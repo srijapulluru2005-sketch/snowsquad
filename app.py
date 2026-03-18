@@ -8,12 +8,14 @@ import pandas as pd
 @st.cache_resource
 def get_connection():
     conn = snowflake.connector.connect(
-        user="YOUR_USERNAME",
-        password="YOUR_PASSWORD",
-        account="YOUR_ACCOUNT",
-        warehouse="CITYRIDE_WH",
-        database="CITYRIDE_DB",
-        schema="CURATED"
+[snowflake]
+user = "SRIJA33"
+password = "Pullurusrija@33"
+account = "FTMLDOE-ZB77404"
+warehouse = "CITYRIDE_WH"
+database = "CITYRIDE_DB"
+schema = "CURATED"
+role = "ACCOUNTADMIN"
     )
     return conn
 
