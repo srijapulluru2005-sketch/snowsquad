@@ -1,5 +1,6 @@
 import streamlit as st
-st.title("Test Streamlit App ✅")
+
+st.write(st.secrets["snowflake"])  # just to see if secrets read correctly
 
 # -----------------------------
 # Page Config
