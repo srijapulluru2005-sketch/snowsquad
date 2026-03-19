@@ -14,7 +14,7 @@ st.set_page_config(
 # -----------------------------
 # Snowflake Connection
 # -----------------------------
-import snowflake.connector
+
 st.write("Snowflake imported successfully ✅")
 @st.cache_resource
 def get_connection():
