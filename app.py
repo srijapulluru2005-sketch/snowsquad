@@ -13,7 +13,6 @@ st.set_page_config(
 # -----------------------------
 # Snowflake Connection
 # -----------------------------
-import snowflake.connector
 st.write("Snowflake imported successfully ✅")
 @st.cache_resource
 def get_connection():
@@ -35,7 +34,11 @@ conn = get_connection()
 # -----------------------------
 @st.cache_data
 def run_query(query):
-    return pd.read_sql(query, conn)
+    cur = conn.cursor()
+    cur.execute(query)
+    df = pd.DataFrame(cur.fetchall(), columns=[col[0] for col in cur.description])
+    cur.close()
+    return df
 
 # -----------------------------
 # Title
