@@ -1,6 +1,6 @@
 import streamlit as st
-
-st.write(st.secrets["snowflake"])  # just to see if secrets read correctly
+import pandas as pd
+import snowflake.connector
 
 # -----------------------------
 # Page Config
@@ -10,11 +10,11 @@ st.set_page_config(
     layout="wide"
 )
 
+st.title("🚴‍♂️ CityRide Analytics Dashboard")
+
 # -----------------------------
 # Snowflake Connection
 # -----------------------------
-
-st.write("Snowflake imported successfully ✅")
 @st.cache_resource
 def get_connection():
     conn = snowflake.connector.connect(
@@ -29,6 +29,7 @@ def get_connection():
     return conn
 
 conn = get_connection()
+st.success("✅ Connected to Snowflake!")
 
 # -----------------------------
 # Query Function
@@ -42,17 +43,13 @@ def run_query(query):
     return df
 
 # -----------------------------
-# Title
-# -----------------------------
-st.title("🚴‍♂️ CityRide Analytics Dashboard")
-
-# -----------------------------
-# KPIs
+# Example KPIs
 # -----------------------------
 st.subheader("📊 Key Metrics")
 
 col1, col2, col3 = st.columns(3)
 
+# Replace with your table / columns
 total_revenue = run_query("SELECT SUM(revenue) AS val FROM fact_rentals").iloc[0,0]
 avg_duration = run_query("SELECT AVG(duration_sec)/60 AS val FROM fact_rentals").iloc[0,0]
 total_rides = run_query("SELECT COUNT(*) AS val FROM fact_rentals").iloc[0,0]
