@@ -1,6 +1,7 @@
 import streamlit as st
-import snowflake.connector
 import pandas as pd
+
+st.title("Test Streamlit App ✅")
 
 # -----------------------------
 # Page Config
@@ -13,6 +14,7 @@ st.set_page_config(
 # -----------------------------
 # Snowflake Connection
 # -----------------------------
+import snowflake.connector
 st.write("Snowflake imported successfully ✅")
 @st.cache_resource
 def get_connection():
